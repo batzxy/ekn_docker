@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Check if package openssl is installed. If not, install it.
-dpkg -l | grep -qw openssl || sudo apt-get install -yyq openssl
-
 echo "What do you want to name the .key and .crt files?"
 echo "Example: Naming 'MyFiles' generates 'MyFiles.key' and 'MyFiles.crt'"
 read -p "Filename: " INPUT
@@ -19,5 +16,3 @@ openssl req -new -x509 -nodes -sha256 -days $DAYS -key $INPUT.key -out $INPUT.cr
 # List the files
 echo "The files were generated in the current working directory."
 ls -l | grep $INPUT
-
-#EOF
