@@ -1,0 +1,12 @@
+#server.port: 5601
+server.host: "172.16.17.19"
+#server.host: "127.0.0.1"
+elasticsearch.hosts: "http://172.16.17.18:9200"
+#elasticsearch.hosts: "http://127.0.0.1:9200"
+xpack.apm.enabled: false
+xpack.ml.enabled: false
+xpack.siem.enabled: false
+xpack.maps.enabled: false
+xpack.uptime.enabled: false
+xpack.infra.enabled: false
+xpack.canvas.enabled: false

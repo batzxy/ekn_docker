@@ -1,0 +1,54 @@
+version: "3"
+services:
+ elasticsearch:
+  image: elasticsearch:7.2.0
+  container_name: elasticsearch
+  environment:
+   - discovery.type=single-node
+  volumes:
+   - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+   - "/etc/timezone:/etc/timezone:ro"
+   - "/etc/localtime:/etc/localtime:ro"
+  ulimits: 
+   memlock:
+    soft: -1
+    hard: -1
+  ports:
+   - "9200:9200"
+  networks:
+    segregate:
+      ipv4_address: 172.16.17.18
+
+ kibana:
+  image: kibana:7.2.0
+  container_name: kibana
+  volumes:
+   - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+   - "/etc/timezone:/etc/timezone:ro"
+   - "/etc/localtime:/etc/localtime:ro"
+  ports:
+   - "5601:5601"
+  networks:
+    segregate:
+      ipv4_address: 172.16.17.19
+
+ nginx: 
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./my.crt:/etc/ssl/my.crt
+      - ./my.key:/etc/ssl/my.key
+    ports:
+      - "443:443"
+    networks:
+      segregate:
+        ipv4_address: 172.16.17.20
+
+networks:
+  segregate:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.17.16/28
+
