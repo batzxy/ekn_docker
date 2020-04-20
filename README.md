@@ -3,7 +3,7 @@ Basic Elasticsearch and Kibana setup using Docker.
 Follow these steps:
 1) Execute the "generate_certificate.sh" script to make your own SSL certs using OPENSSL.
 
-2) Change the name of key and certificate file in the "docker-compose.yaml" and "default.conf" files.
+2) Change the name of key (my.key) and certificate (my.crt) file in the "docker-compose.yaml" and "default.conf" files with the one you just created using the shell script.
 
 3) Run the "docker-compose.yaml" file up and you should be ready to go!
 
